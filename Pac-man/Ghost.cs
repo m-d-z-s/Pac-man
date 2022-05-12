@@ -8,7 +8,7 @@ namespace Pac_man
 {
     internal class Ghost
     {
-        public int x;
+        /*public int x;
         public int y;
         public int speed;
         public bool goup;
@@ -20,5 +20,6 @@ namespace Pac_man
         {
 
         }
+        */
     }
 }

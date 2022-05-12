@@ -13,73 +13,105 @@ namespace Pac_man
     public partial class Form1 : Form
     {
         Graphics g;
-        private Pacman left;
+        //private Pacman left;
 
-        
 
-        Pacman pacman = new Pacman(false, false, false, false, Properties.Resources.left);
+        Pacman pacman = new Pacman( 0, 0, Properties.Resources.left);
 
-        //int speed = 5;
-
-        //ghost 1 and 2 variables. These guys are sane well sort of
-        int ghost1 = 8;
-        int ghost2 = 8;
-
-        //ghost 3 crazy variables
-        int ghost3x = 8;
-        int ghost3y = 8;
 
         int score = 0;
 
         public Form1()
         {
             InitializeComponent();
-            g = pictureBox1.CreateGraphics();
-            left = new Pacman();
+            g = pictureBox2.CreateGraphics();
+            //g = this.CreateGraphics();
+            //left = new Pacman();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void keyisdown(object sender, KeyEventArgs e)
         {
+            switch (e.KeyCode)
+            {
+                case Keys.Left:
+                    pacman.goleft = true;
+                    pacman.image = Properties.Resources.left;
+                    pictureBox1.Image = pacman.image;
+                    break;
+                case Keys.Right:
+                    pacman.goright = true;
+                    pacman.image = Properties.Resources.right;
+                    pictureBox1.Image = pacman.image;
+                    break;
+                case Keys.Up:
+                    pacman.goup = true;
+                    pacman.image = Properties.Resources.Up;
+                    pictureBox1.Image = pacman.image;
+                    break;
+                case Keys.Down:
+                    pacman.godown = true;
+                    pacman.image = Properties.Resources.down;
+                    pictureBox1.Image = pacman.image;
+                    break;
+
+
+            }
+            /*
             if (e.KeyCode == Keys.Left)
             {
                 pacman.goleft = true;
                 pacman.image = Properties.Resources.left;
-                //pictureBox5.Image = pacman.image;
+                pictureBox1.Image = pacman.image;
             }
 
             if (e.KeyCode == Keys.Right)
             {
                 pacman.goright = true;
                 pacman.image = Properties.Resources.right;
-                //pictureBox5.Image = pacman.image;
-
+                pictureBox1.Image = pacman.image;
             }
             if (e.KeyCode == Keys.Up)
             {
 
                 pacman.goup = true;
                 pacman.image = Properties.Resources.Up;
-                //pictureBox5.Image = pacman.image;
+                pictureBox1.Image = pacman.image;
+
             }
             if (e.KeyCode == Keys.Down)
             {
 
                 pacman.godown = true;
                 pacman.image = Properties.Resources.down;
-                //pictureBox5.Image = pacman.image;
+                pictureBox1.Image = pacman.image;
             }
+            */
         }
 
         private void keyisup(object sender, KeyEventArgs e)
         {
+            switch (e.KeyCode)
+            {
+                case Keys.Left:
+                    pacman.goleft = false;
+                    break;
+                case Keys.Right:
+                    pacman.goright = false;
+                    break;
+                case Keys.Up:
+                    pacman.goup = false;
+                    break;
+                case Keys.Down:
+                    pacman.godown = false;
+                    break;
+            }
+
+            /*
             if (e.KeyCode == Keys.Left)
             {
                 pacman.goleft = false;
+                //pacman.MoveLeft();
             }
 
             if (e.KeyCode == Keys.Right)
@@ -94,25 +126,39 @@ namespace Pac_man
             {
                 pacman.godown = false;
             }
+            */
+            
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            //pictureBox1.Refresh();
             label1.Text = "Score: " + score; // show the score on the board
-
             //player movement codes start
-            if (pacman.goleft)
+            pictureBox2.Refresh();
+            /*
+            if (pacman.x == pictureBox1.Width || pacman.y == pictureBox1.Height)
             {
-                pictureBox1.Refresh();
+                // Dont Move
+            }
+            */
 
+            if (pacman.goleft )
+            {
+                //pictureBox1.Invalidate();
                 pacman.MoveLeft();
                 pacman.Draw(g);
+                //MessageBox.Show(Convert.ToString(pictureBox1.Location.X) + " " + Convert.ToString(pictureBox1.Location.Y));
+
 
                 //moving player to the left. 
             }
+            else
+            {
+                pacman.Draw(g);
+            }
             if (pacman.goright)
             {
-                pictureBox1.Refresh();
 
                 pacman.MoveRight();
                 pacman.Draw(g);
@@ -121,7 +167,6 @@ namespace Pac_man
             }
             if (pacman.goup)
             {
-                pictureBox1.Refresh();
 
                 pacman.MoveUp();
                 pacman.Draw(g);
@@ -130,7 +175,7 @@ namespace Pac_man
 
             if (pacman.godown)
             {
-                pictureBox1.Refresh();
+                //pictureBox1.Refresh();
 
                 pacman.MoveDown();
                 pacman.Draw(g);
@@ -223,7 +268,6 @@ namespace Pac_man
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
-
         }
     }
 }
