@@ -8,17 +8,14 @@ using System.Windows.Forms;
 
 namespace Pac_man
 {
-    internal class Pacman
+    public class Pacman
     {
         PictureBox pictureBox1 = new PictureBox();
-        //public PictureBox pictureBox5;
-        //private const string V = "left.gif";
-        public int x;
-        public int y;
-        public int w;
-        public int h;
+        //int x;
+        //int y;
+        //int w;
+        //int h;
         public int speed;
-        //public bool flag;
         public bool goup;
         public bool godown;
         public bool goleft;
@@ -26,14 +23,13 @@ namespace Pac_man
         public Image image;
 
 
-        public Pacman(int x, int y, Image image)
+        public Pacman(Image image)
         {
             this.speed = 5;
-            this.x = x;
-            this.y = y;
-            this.w = 25;
-            this.h = 28;
-            //this.flag = true;
+            //this.x = x;
+            //this.y = y;
+            //this.w = 25;
+            //this.h = 28;
             this.goup = false;
             this.godown = false;
             this.goleft = false;
@@ -42,25 +38,20 @@ namespace Pac_man
 
 
         }
-        public Pacman()
-        {
-
-        }
 
         public void MoveLeft()
         {
-            this.x -= speed;
-            pictureBox1.Location = new Point( x, y);
+            //this.x -= speed;
+            //pictureBox1.Location = new Point( x, y);
             pictureBox1.Image = Properties.Resources.left;
-            //MessageBox.Show(Convert.ToString(this.x) + " " + Convert.ToString(this.y));
 
 
         }
 
         public void MoveRight()
         {
-            this.x += speed;
-            pictureBox1.Location = new Point( x, y);
+            //this.x += speed;
+            //pictureBox1.Location = new Point( x, y);
             pictureBox1.Image = Properties.Resources.right;
 
 
@@ -68,31 +59,25 @@ namespace Pac_man
 
         public void MoveDown()
         {
-            this.y += speed;
-            pictureBox1.Location = new Point( x, y );
+            //this.y += speed;
+            //pictureBox1.Location = new Point( x, y);
             pictureBox1.Image = Properties.Resources.down;
 
 
         }
         public void MoveUp()
         {
-            this.y -= speed;
-            pictureBox1.Location = new Point( x, y );
+            //this.y -= speed;
+            //pictureBox1.Location = new Point( x, y);
             pictureBox1.Image = Properties.Resources.Up;
 
 
         }
 
-        public void Draw(Graphics g)
+        public void Clear(Graphics g)
         {
             g.Clear(Color.Silver);
-            g.DrawImage(image, x, y, w, h);
-            //pacman.Draw(e.Graphics);
-            //Bitmap mypacman = new Bitmap(this.image);
-            //Bitmap mypacman_2 = new Bitmap(mypacman, new Size(25, 28));
-            //g.DrawImage(mypacman_2, x, y);
-            //g.DrawIcon(pictureBox5, this.x, this.y);
-            //g.DrawImage(V, x, y);
+            //g.DrawImage(image, x, y, w, h);
         }
     }
 }
